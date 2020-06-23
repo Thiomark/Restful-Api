@@ -2,6 +2,13 @@ const express = require("express");
 
 const app = express();
 
+const courses = [
+    { name: "Javascript Crash Course", id: 1, year: 2019 },
+    { name: "Python Crash Course", id: 2, year: 2018 },
+    { name: "DenoJs Crash Course", id: 3, year: 2020 },
+    { name: "Java Crash Course", id: 4, year: 2015 },
+];
+
 // something/something => is called routes
 
 // res is from the server
@@ -15,14 +22,25 @@ app.get("/", function (req, res) {
     res.send("Hello World");
 });
 
-app.get("/api/course", function (req, res) {
-    res.send([1, 2, 3]);
+app.get("/api/courses", function (req, res) {
+    // res.send([1, 2, 3])
 });
 
-app.get("/api/course/:id", function (req, res) {
+app.get("/api/courses/:id", function (req, res) {
     // :id is an argument or parameter
     // and in order to read a parameter we use res.params.id or whatever the name of the parameter is
-    res.send(req.params.id);
+    // res.send(req.params.id);
+
+    const course = courses.find(
+        (course) => course.id === parseInt(req.params.id)
+    );
+
+    if (!course) {
+        res.status(404).send("The course you are looking for was not found");
+    } else {
+        // res.send(req.params.id);
+        res.send(course);
+    }
 });
 
 // We can have more than one parameter in a route
