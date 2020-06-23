@@ -1,0 +1,15 @@
+{
+    "name": "ReviewsApi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "dev": "nodemon server"
+    },
+    "keywords": [],
+    "author": "Itumeleng Tsoela",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}
