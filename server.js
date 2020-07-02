@@ -2,6 +2,8 @@ const express = require("express");
 
 const app = express();
 
+app.use(express.json());
+
 const courses = [
     { name: "Javascript Crash Course", id: 1, year: 2019 },
     { name: "Python Crash Course", id: 2, year: 2018 },
@@ -23,6 +25,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/api/courses", function (req, res) {
+    res.send(courses);
     // res.send([1, 2, 3])
 });
 
@@ -48,6 +51,12 @@ app.get("/api/posts/:year/:month", function (req, res) {
     // :id is an argument or parameter
     // and in order to read a parameter we use res.params.id or whatever the name of the parameter is
     res.send(req.params);
+});
+
+app.post("/api/courses", (req, res) => {
+    const course = { name: "PHP", id: courses.length + 1, year: 2013 };
+    courses.push(course);
+    res.send(course);
 });
 
 // There is also res.query which sorts things by what you want
